@@ -1,32 +1,64 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-<head>
-  <meta charset="utf-8">
-  <title>My first styled page</title>
-  <link rel="stylesheet" href="mystyle.css">
+  <head>
+    <meta charset="utf-8">
+    <title>Number guessing game</title>
+    <style>
+      body {text-align: center;}
+    </style>
   </head>
-  <body>
-    <!-- 网站导航菜单 -->
-  <ul class="navbar">
-    <li><a href="index.html">Home page</a></li>
-    <li><a href="musings.html">Musings</a></li>
-    <li><a href="town.html">My town</a></li>
-    <li><a href="links.html">Links</a></li>
-  </ul>
-  <!-- 主要内容 -->
-  <h1>My first styled page</h1>
+  <body style="background-color:#eb3333">
+    <h1 style="color:white;">雨姐的数字猜谜游戏,一起来玩！</h1>
+    <div class="button-container">
+      <button onclick="showTopic()">戳！</button>
+      <button onclick="sayHello()">哈喽~</button>
+    </div>
+    <p id='demo' style="display: none">农村就这生活，简简单单小游戏，开造！</p>
+    <audio id="successAudio" src="success.mp3" preload="auto"></audio>
+    <script>
+      // 生成一个 1 到 10 之间的随机整数作为谜底
+      var secretNumber = Math.floor(Math.random() * 10) + 1;
+      function checkGuess() {
+        var userGuess = parseInt(document.getElementById('guessInput').value);
+        var resultText = '';
 
-  <p>Welcome to my styled page!
+        if (userGuess === secretNumber) {
+          resultText = '老蒯，太带派了！';
+          var audio = document.getElementById('successAudio');
+          audio.play();
+          var resultElement = document.getElementById('result');
+          resultElement.innerText = resultText;
+          resultElement.style.fontSize = '36px';
+          resultElement.style.color = 'white';
+        } else {
+          resultText = '你咋zen笨呢，再试试吧！答案是 ' + secretNumber;
+        }
+        document.getElementById('result').innerText = resultText;
+      }
+    </script>
+    <p style="color:white;">猜一个 1 到 10 之间的数字：</p>
+    <input type="number" id="guessInput" placeholder="输入你的猜测">
+    <button onclick="checkGuess()">提交</button>
+    <p id="result"></p>
+    <script>
+      function sayHello() {
+        var response = prompt('来了，老蒯！给自己起个名吧！');
+        alert("诶！" + response + "来了嗷,佩斯，点火！");
+      };
 
-  <p>It lacks images, but at least it has style.
-  And it has links, even if they don't go
-  anywhere&hellip;
+      function add(a, b) {
+        return a + b;
+      }
+      console.log(add(20, 30));
+      console.log(add(158, 20078));
 
-  <p>There should be more here, but I don't know
-  what yet.
-
-  <!-- Sign and date the page, it's only polite! -->
-  <address>Made 5 April 2004<br>
-    by myself.</address>
+      function showTopic() {
+        var x = document.getElementById('demo');
+        x.style.display = 'block';
+        x.style.fontSize = "25px";
+        x.style.color = 'yellow';
+      }
+    </script>
+    <img src="yujie.WEBP" width="700" height="700">
   </body>
 </html>
